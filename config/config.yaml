@@ -1,0 +1,90 @@
+# AI Insight System Configuration
+# This file contains default settings for the system
+
+app_name: "AI Insight System"
+version: "0.1.0"
+environment: "development"
+log_level: "INFO"
+
+# Data directories
+data_dir: "data"
+reports_dir: "reports"
+logs_dir: "logs"
+
+# Collector Settings
+collector:
+  ai_model_sources:
+    - "openai"
+    - "anthropic"
+    - "google"
+    - "meta"
+    - "mistral"
+    - "cohere"
+  
+  github_repos:
+    - "huggingface/transformers"
+    - "openai/whisper"
+    - "facebookresearch/llama"
+    - "microsoft/DeepSpeed"
+    - "karpathy/nanoGPT"
+    - "microsoft/semantic-kernel"
+    - "langchain-ai/langchain"
+  github_max_repos: 50
+  
+  hf_model_tags:
+    - "transformers"
+    - "pytorch"
+    - "text-generation"
+    - "llm"
+  hf_max_models: 100
+  
+  arxiv_categories:
+    - "cs.AI"
+    - "cs.LG"
+    - "cs.CL"
+    - "cs.CV"
+    - "cs.NE"
+  arxiv_max_papers: 50
+
+# Analyzer Settings
+analyzer:
+  llm_provider: "anthropic"
+  llm_model: "claude-sonnet-4-20250514"
+  llm_max_tokens: 8192
+  llm_temperature: 0.7
+  insight_depth: "comprehensive"
+  model_analysis_depth: "detailed"
+  enable_code_analysis: true
+
+# Scheduler Settings
+scheduler:
+  enabled: true
+  timezone: "Asia/Shanghai"
+  collector_schedule: "0 6 * * *"  # Daily at 6 AM
+  analyzer_schedule: "0 8 * * *"   # Daily at 8 AM
+  report_schedule: "0 10 * * *"    # Daily at 10 AM
+  max_retries: 3
+  retry_delay: 300
+
+# Memory Settings
+memory:
+  enabled: true
+  storage_backend: "sqlite"
+  db_path: "data/memory/memory.db"
+  max_memory_items: 10000
+  retention_days: 90
+
+# API Settings
+api:
+  host: "0.0.0.0"
+  port: 8000
+  debug: false
+  cors_origins:
+    - "*"
+
+# GUI Settings
+gui:
+  enabled: true
+  host: "0.0.0.0"
+  port: 7860
+  share: false
